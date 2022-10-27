@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -15,7 +18,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/angular-microfrontend-app",
             "index": "src/index.html",
@@ -27,7 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -51,7 +54,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "none"
             },
             "development": {
               "buildOptimizer": false,
@@ -65,7 +68,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
               "browserTarget": "angular-microfrontend-app:build:production"
@@ -77,13 +80,13 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "ngx-build-plus:extract-i18n",
           "options": {
             "browserTarget": "angular-microfrontend-app:build"
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "ngx-build-plus:karma",
           "options": {
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
@@ -94,7 +97,213 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "renda-fixa": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/renda-fixa",
+      "sourceRoot": "projects/renda-fixa/src",
+      "prefix": "rf",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/renda-fixa",
+            "index": "projects/renda-fixa/src/index.html",
+            "main": "projects/renda-fixa/src/main.ts",
+            "polyfills": "projects/renda-fixa/src/polyfills.ts",
+            "tsConfig": "projects/renda-fixa/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/renda-fixa/src/favicon.ico",
+              "projects/renda-fixa/src/assets"
+            ],
+            "styles": [
+              "projects/renda-fixa/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/renda-fixa/src/environments/environment.ts",
+                  "with": "projects/renda-fixa/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "renda-fixa:build:production"
+            },
+            "development": {
+              "browserTarget": "renda-fixa:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "renda-fixa:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/renda-fixa/src/test.ts",
+            "polyfills": "projects/renda-fixa/src/polyfills.ts",
+            "tsConfig": "projects/renda-fixa/tsconfig.spec.json",
+            "karmaConfig": "projects/renda-fixa/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/renda-fixa/src/favicon.ico",
+              "projects/renda-fixa/src/assets"
+            ],
+            "styles": [
+              "projects/renda-fixa/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "renda-variavel": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/renda-variavel",
+      "sourceRoot": "projects/renda-variavel/src",
+      "prefix": "rv",
+      "architect": {
+        "build": {
+          "builder": "ngx-build-plus:browser",
+          "options": {
+            "outputPath": "dist/renda-variavel",
+            "index": "projects/renda-variavel/src/index.html",
+            "main": "projects/renda-variavel/src/main.ts",
+            "polyfills": "projects/renda-variavel/src/polyfills.ts",
+            "tsConfig": "projects/renda-variavel/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/renda-variavel/src/favicon.ico",
+              "projects/renda-variavel/src/assets"
+            ],
+            "styles": [
+              "projects/renda-variavel/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/renda-variavel/src/environments/environment.ts",
+                  "with": "projects/renda-variavel/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "none"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "ngx-build-plus:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "renda-variavel:build:production"
+            },
+            "development": {
+              "browserTarget": "renda-variavel:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "ngx-build-plus:extract-i18n",
+          "options": {
+            "browserTarget": "renda-variavel:build"
+          }
+        },
+        "test": {
+          "builder": "ngx-build-plus:karma",
+          "options": {
+            "main": "projects/renda-variavel/src/test.ts",
+            "polyfills": "projects/renda-variavel/src/polyfills.ts",
+            "tsConfig": "projects/renda-variavel/tsconfig.spec.json",
+            "karmaConfig": "projects/renda-variavel/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/renda-variavel/src/favicon.ico",
+              "projects/renda-variavel/src/assets"
+            ],
+            "styles": [
+              "projects/renda-variavel/src/styles.scss"
             ],
             "scripts": []
           }

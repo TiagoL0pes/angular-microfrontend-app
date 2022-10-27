@@ -1,0 +1,29 @@
+.renda-variavel {
+  ul {
+    list-style: none;
+
+    li {
+      margin-bottom: 10px;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #1f2937;
+      background-color: #f8fafc;
+      border-bottom: solid 5px var(--risco);
+      border-left: solid 5px var(--risco);
+      box-shadow: -3px 4px 5px 0px #a1a1aa;
+
+      &:hover {
+        transform: translate(-5px, 5px);
+        background-color: #e2e8f0;
+        transition: all 0.3s;
+      }
+
+      &:not(:hover) {
+        transform: translate(0, 0);
+        transition: transform 0.5s;
+      }
+    }
+  }
+}

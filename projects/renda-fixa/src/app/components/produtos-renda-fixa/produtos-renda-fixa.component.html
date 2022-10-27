@@ -1,0 +1,41 @@
+<section class="renda-fixa">
+  <ng-container *ngFor="let produto of produtos">
+    <div
+      class="card"
+      [ngStyle]="{ borderLeft: 'solid 5px' + escala[produto.risco] }"
+    >
+      <div class="card__title">
+        <strong>{{ produto.nome }}</strong>
+      </div>
+      <div class="card__content">
+        <p>
+          <strong>Valor mínimo:</strong>
+          {{ produto.minimo | currency: "BRL" }}
+        </p>
+        <p>
+          <strong>Rentabilidade:</strong>
+          {{ produto.rentabilidade }}
+        </p>
+        <p>
+          <strong>Resgate: </strong>
+          {{ produto.liquidez }}
+        </p>
+        <p>
+          <strong>Vencimento:</strong>
+          {{ produto.vencimento }}
+        </p>
+      </div>
+      <div class="card__footer">
+        <p>
+          <strong>Emissor:</strong>
+          {{ produto.emissor }}
+        </p>
+        <p>
+          <strong>
+            {{ produto.garantia }}
+          </strong>
+        </p>
+      </div>
+    </div>
+  </ng-container>
+</section>
